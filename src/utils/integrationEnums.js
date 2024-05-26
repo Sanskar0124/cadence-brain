@@ -1,0 +1,10 @@
+const MAIL_INTEGRATION_TYPES = {};
+const CALENDAR_INTEGRATION_TYPES = {
+  GOOGLE: 'google',
+  OUTLOOK: 'outlook',
+};
+
+module.exports = {
+  MAIL_INTEGRATION_TYPES,
+  CALENDAR_INTEGRATION_TYPES,
+};

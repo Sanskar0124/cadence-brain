@@ -1,0 +1,17 @@
+.vscode/
+node_modules/
+.env
+.env.development
+.env.dev
+.env.deve
+.env.production
+.env.test
+playground.js
+app.yaml
+pm2config.json
+service-account.json
+logs/
+token.json
+.DS_Store
+.history/
+config.js

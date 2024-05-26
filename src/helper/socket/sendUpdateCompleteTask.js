@@ -1,0 +1,53 @@
+// Utils
+const logger = require('../../utils/winston');
+const { DB_TABLES } = require('../../utils/modelEnums');
+
+const client = require('./setup');
+
+const Repository = require('../../repository');
+
+const findOrCreateTaskSummary = require('../task/findOrCreateTaskSummary');
+
+const sendUpdateCompleteTask = async ({ user_id, email, taskCount }) => {
+  try {
+    let user, errForUser;
+    if (!email) {
+      [user, errForUser] = await Repository.fetchOne({
+        tableName: DB_TABLES.USER,
+        query: { user_id },
+      });
+      if (errForUser) return [null, `Error while fetching user: ${errForUser}`];
+      if (!user) return [null, 'User not found.'];
+
+      email = user.email;
+    }
+
+    // fetch task summary
+    const [taskSummary, errForTaskSummary] = await findOrCreateTaskSummary({
+      user_id,
+      toUpdateInRedis: true,
+      taskIncrementCount: taskCount,
+    });
+    if (errForTaskSummary)
+      return [null, `Error while fetching task summary: ${errForTaskSummary}`];
+
+    let data = await client.sendUpdateCompleteTask({
+      email,
+      task_summary: JSON.stringify(taskSummary),
+    });
+
+    data = JSON.parse(JSON.stringify(data));
+
+    if (data.success) return [data.msg, null];
+    else return [null, data.msg];
+  } catch (err) {
+    logger.error(
+      'Error while sending delete task to socket service via grpc: ',
+      err
+    );
+    console.log('Stack trace updateCompleteTask: ', err);
+    return [null, err.message];
+  }
+};
+
+module.exports = sendUpdateCompleteTask;

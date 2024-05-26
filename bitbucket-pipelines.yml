@@ -1,0 +1,361 @@
+# FOR BRAIN AND PROTO for CI
+definitions:
+  steps:
+    - step: &start
+        name: Start pipeline
+        script:
+          - echo "Starting Pipeline for brain"
+    - step: &cadence-backend
+        name: Build and push image for cadence backend
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-backend'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-task-service
+        name: Build and push image for cadence task service
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-task-service'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-socket-microservice
+        name: Build and push image for cadence socket microservice
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-socket-microservice'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-mail-microservice
+        name: Build and push image for cadence mail microservice
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-mail-microservice'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-email-tracking-service
+        name: Build and push image for cadence email-tracking-service
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-email-tracking-service'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-call-microservice
+        name: Build and push image for cadence call-microservice
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-call-microservice'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-calendar-microservice
+        name: Build and push image for cadence calendar-microservice
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-calendar-microservice'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-extension-backend
+        name: Build and push image for cadence-extension-backend
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-extension-backend'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-marketplace
+        name: Build and push image for cadence-marketplace
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-marketplace'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-integrations
+        name: Build and push image for cadence-integrations
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-integrations'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-dev
+        name: Build and push image for cadence-dev
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-dev'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &automated-workflow-service
+        name: Build and push image for automated-workflow-service
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'automated-workflow-service'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+    - step: &cadence-cron
+        name: Build and push image for cadence-cron
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-cron'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+
+    - step: &cadence-statistics
+        name: Build and push image for cadence-statistics
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-statistics'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+
+    - step: &cadence-webhook
+        name: Build and push image for cadence-webhook
+        trigger: manual
+        image: atlassian/default-image:3
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.1
+            variables:
+              BITBUCKET_USERNAME: $USERNAME
+              BITBUCKET_APP_PASSWORD: $APP_PASSWORD
+              REPOSITORY: 'cadence-webhook'
+              # ACCOUNT: '<string>' # Optional
+              REF_TYPE: 'branch' # Optional
+              REF_NAME: $BITBUCKET_BRANCH # Optional
+              # CUSTOM_PIPELINE_NAME: '<string>' # Optional
+              # PIPELINE_VARIABLES: '<json>' # Optional
+              # WAIT: '<boolean>' # Optional
+              # WAIT_MAX_TIMEOUT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
+
+pipelines:
+  branches:
+    bitbucket-pipeline-test:
+      - step: *start
+      - parallel:
+        steps:
+          - step: *cadence-backend
+          - step: *cadence-task-service
+          - step: *cadence-socket-microservice
+          - step: *cadence-mail-microservice
+          - step: *cadence-email-tracking-service
+          - step: *cadence-call-microservice
+          - step: *cadence-calendar-microservice
+          - step: *cadence-extension-backend
+          - step: *cadence-marketplace
+          - step: *cadence-integrations
+          - step: *cadence-dev
+          - step: *automated-workflow-service
+          - step: *cadence-cron
+          - step: *cadence-statistics
+          - step: *cadence-webhook
+
+    opentelemetry:
+      - step: *start
+      - parallel:
+          steps:
+            - step: *cadence-backend
+            - step: *cadence-task-service
+            - step: *cadence-socket-microservice
+            - step: *cadence-mail-microservice
+            - step: *cadence-email-tracking-service
+            - step: *cadence-call-microservice
+            - step: *cadence-calendar-microservice
+            - step: *cadence-extension-backend
+            - step: *cadence-marketplace
+            - step: *cadence-integrations
+            - step: *cadence-dev
+            - step: *automated-workflow-service
+            - step: *cadence-cron
+            - step: *cadence-statistics
+            - step: *cadence-webhook
+
+    stage:
+      - step: *start
+      - parallel:
+          steps:
+            - step: *cadence-backend
+            - step: *cadence-task-service
+            - step: *cadence-socket-microservice
+            - step: *cadence-mail-microservice
+            - step: *cadence-email-tracking-service
+            - step: *cadence-call-microservice
+            - step: *cadence-calendar-microservice
+            - step: *cadence-extension-backend
+            - step: *cadence-marketplace
+            - step: *cadence-integrations
+            - step: *cadence-dev
+            - step: *automated-workflow-service
+            - step: *cadence-cron
+            - step: *cadence-statistics
+            - step: *cadence-webhook
+
+    master:
+      - step: *start
+      - parallel:
+          steps:
+            - step: *cadence-backend
+            - step: *cadence-task-service
+            - step: *cadence-socket-microservice
+            - step: *cadence-mail-microservice
+            - step: *cadence-email-tracking-service
+            - step: *cadence-call-microservice
+            - step: *cadence-calendar-microservice
+            - step: *cadence-extension-backend
+            - step: *cadence-marketplace
+            - step: *cadence-integrations
+            - step: *cadence-dev
+            - step: *automated-workflow-service
+            - step: *cadence-cron
+            - step: *cadence-statistics
+            - step: *cadence-webhook
